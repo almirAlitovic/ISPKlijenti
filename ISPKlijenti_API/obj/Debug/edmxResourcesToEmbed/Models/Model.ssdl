@@ -1,0 +1,621 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IspKlijentiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Dobavljaci">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="KontaktOsoba" Type="nvarchar" MaxLength="100" />
+    <Property Name="Adresa" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Telefon" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="Fax" Type="nvarchar" MaxLength="25" />
+    <Property Name="Web" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ZiroRacuni" Type="nvarchar" MaxLength="255" />
+    <Property Name="Napomena" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="InstaliranaOprema">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KlijentId" Type="int" Nullable="false" />
+    <Property Name="OpremaMaterijalId" Type="int" Nullable="false" />
+    <Property Name="Kolicina" Type="int" />
+    <Property Name="Slika" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Klijenti">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Prezime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="KorisnickoIme" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Adresa" Type="nvarchar" MaxLength="150" />
+    <Property Name="Telefon" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Aktivan" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KlijentiLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Prezime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="KorisnickoIme" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IzvrsenaPromjena" Type="nvarchar" MaxLength="100" />
+    <Property Name="VrijemeIzmjene" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MjerneJedinice">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Oznaka" Type="nvarchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mjeseci">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RbMjeseca" Type="int" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Nabavka">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ZaposlenikId" Type="int" Nullable="false" />
+    <Property Name="OpremaMaterijalId" Type="int" Nullable="false" />
+    <Property Name="Kolicina" Type="int" Nullable="false" />
+    <Property Name="NabavnaCijena" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="DatumPrijema" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NaciniPlacanja">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OpremaMaterijal">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Cijena" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="MjernaJedinicaId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PosebniRacuni">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Klijent" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Usluga" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Kolicina" Type="int" Nullable="false" />
+    <Property Name="Cijena" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="IznosBezPDV" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="IznosSaPDV" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="VrijemeIsporuke" Type="datetime" Nullable="false" />
+    <Property Name="Placeno" Type="bit" Nullable="false" />
+    <Property Name="NacinPlacanjaId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Racuni">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KlijentId" Type="int" Nullable="false" />
+    <Property Name="UslugaId" Type="int" Nullable="false" />
+    <Property Name="Kolicina" Type="int" Nullable="false" />
+    <Property Name="IznosBezPDV" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="IznosSaPDV" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="MjesecId" Type="int" Nullable="false" />
+    <Property Name="VrijemeIsporuke" Type="datetime" Nullable="false" />
+    <Property Name="Placeno" Type="bit" Nullable="false" />
+    <Property Name="NacinPlacanjaId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RadniNalozi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DatumKreiranja" Type="datetime" Nullable="false" />
+    <Property Name="KlijentId" Type="int" Nullable="false" />
+    <Property Name="UslugaId" Type="int" Nullable="false" />
+    <Property Name="ZaposlenikId" Type="int" Nullable="false" />
+    <Property Name="Detalji" Type="nvarchar(max)" />
+    <Property Name="Adresa" Type="nvarchar(max)" />
+    <Property Name="StatusNalogaId" Type="int" Nullable="false" />
+    <Property Name="IznosZaNaplatu" Type="float" />
+  </EntityType>
+  <EntityType Name="Skladiste">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OpremaMaterijalId" Type="int" Nullable="false" />
+    <Property Name="Kolicina" Type="int" />
+    <Property Name="Lokacija" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="StatusiNaloga">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ugovori">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BrojUgovora" Type="int" Nullable="false" />
+    <Property Name="DatumPotpisivanja" Type="datetime" Nullable="false" />
+    <Property Name="UslugaId" Type="int" Nullable="false" />
+    <Property Name="KlijentId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Uloge">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Opis" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Uplate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KlijentId" Type="int" Nullable="false" />
+    <Property Name="UslugaId" Type="int" Nullable="false" />
+    <Property Name="Iznos" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Napomena" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Usluge">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Opis" Type="nvarchar(max)" />
+    <Property Name="Cijena" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Zaposlenici">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Prezime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="KorisnickoIme" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LozinkaHash" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LozinkaSalt" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Aktivan" Type="bit" />
+  </EntityType>
+  <EntityType Name="ZaposleniciUloge">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ZaposlenikId" Type="int" Nullable="false" />
+    <Property Name="UlogaId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Instalira__Klije__48CFD27E">
+    <End Role="Klijenti" Type="Self.Klijenti" Multiplicity="1" />
+    <End Role="InstaliranaOprema" Type="Self.InstaliranaOprema" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klijenti">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InstaliranaOprema">
+        <PropertyRef Name="KlijentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Instalira__Oprem__49C3F6B7">
+    <End Role="OpremaMaterijal" Type="Self.OpremaMaterijal" Multiplicity="1" />
+    <End Role="InstaliranaOprema" Type="Self.InstaliranaOprema" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OpremaMaterijal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InstaliranaOprema">
+        <PropertyRef Name="OpremaMaterijalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Nabavka__OpremaM__5812160E">
+    <End Role="OpremaMaterijal" Type="Self.OpremaMaterijal" Multiplicity="1" />
+    <End Role="Nabavka" Type="Self.Nabavka" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OpremaMaterijal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Nabavka">
+        <PropertyRef Name="OpremaMaterijalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Nabavka__Zaposle__571DF1D5">
+    <End Role="Zaposlenici" Type="Self.Zaposlenici" Multiplicity="1" />
+    <End Role="Nabavka" Type="Self.Nabavka" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zaposlenici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Nabavka">
+        <PropertyRef Name="ZaposlenikId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OpremaMat__Mjern__4222D4EF">
+    <End Role="MjerneJedinice" Type="Self.MjerneJedinice" Multiplicity="1" />
+    <End Role="OpremaMaterijal" Type="Self.OpremaMaterijal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MjerneJedinice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OpremaMaterijal">
+        <PropertyRef Name="MjernaJedinicaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PosebniRa__Nacin__55F4C372">
+    <End Role="NaciniPlacanja" Type="Self.NaciniPlacanja" Multiplicity="1" />
+    <End Role="PosebniRacuni" Type="Self.PosebniRacuni" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NaciniPlacanja">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PosebniRacuni">
+        <PropertyRef Name="NacinPlacanjaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Racuni__KlijentI__339FAB6E">
+    <End Role="Klijenti" Type="Self.Klijenti" Multiplicity="1" />
+    <End Role="Racuni" Type="Self.Racuni" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klijenti">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Racuni">
+        <PropertyRef Name="KlijentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Racuni__MjesecId__3587F3E0">
+    <End Role="Mjeseci" Type="Self.Mjeseci" Multiplicity="1" />
+    <End Role="Racuni" Type="Self.Racuni" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mjeseci">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Racuni">
+        <PropertyRef Name="MjesecId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Racuni__NacinPla__3B40CD36">
+    <End Role="NaciniPlacanja" Type="Self.NaciniPlacanja" Multiplicity="1" />
+    <End Role="Racuni" Type="Self.Racuni" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NaciniPlacanja">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Racuni">
+        <PropertyRef Name="NacinPlacanjaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Racuni__UslugaId__3493CFA7">
+    <End Role="Usluge" Type="Self.Usluge" Multiplicity="1" />
+    <End Role="Racuni" Type="Self.Racuni" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usluge">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Racuni">
+        <PropertyRef Name="UslugaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RadniNalo__Klije__160F4887">
+    <End Role="Klijenti" Type="Self.Klijenti" Multiplicity="1" />
+    <End Role="RadniNalozi" Type="Self.RadniNalozi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klijenti">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RadniNalozi">
+        <PropertyRef Name="KlijentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RadniNalo__Statu__17036CC0">
+    <End Role="StatusiNaloga" Type="Self.StatusiNaloga" Multiplicity="1" />
+    <End Role="RadniNalozi" Type="Self.RadniNalozi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusiNaloga">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RadniNalozi">
+        <PropertyRef Name="StatusNalogaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RadniNalo__Uslug__17F790F9">
+    <End Role="Usluge" Type="Self.Usluge" Multiplicity="1" />
+    <End Role="RadniNalozi" Type="Self.RadniNalozi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usluge">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RadniNalozi">
+        <PropertyRef Name="UslugaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RadniNalo__Zapos__18EBB532">
+    <End Role="Zaposlenici" Type="Self.Zaposlenici" Multiplicity="1" />
+    <End Role="RadniNalozi" Type="Self.RadniNalozi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zaposlenici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RadniNalozi">
+        <PropertyRef Name="ZaposlenikId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Skladiste__Oprem__44FF419A">
+    <End Role="OpremaMaterijal" Type="Self.OpremaMaterijal" Multiplicity="1" />
+    <End Role="Skladiste" Type="Self.Skladiste" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OpremaMaterijal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Skladiste">
+        <PropertyRef Name="OpremaMaterijalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ugovori__Klijent__21B6055D">
+    <End Role="Klijenti" Type="Self.Klijenti" Multiplicity="1" />
+    <End Role="Ugovori" Type="Self.Ugovori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klijenti">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ugovori">
+        <PropertyRef Name="KlijentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ugovori__UslugaI__20C1E124">
+    <End Role="Usluge" Type="Self.Usluge" Multiplicity="1" />
+    <End Role="Ugovori" Type="Self.Ugovori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usluge">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ugovori">
+        <PropertyRef Name="UslugaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Uplate__KlijentI__4D94879B">
+    <End Role="Klijenti" Type="Self.Klijenti" Multiplicity="1" />
+    <End Role="Uplate" Type="Self.Uplate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klijenti">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Uplate">
+        <PropertyRef Name="KlijentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Uplate__UslugaId__4E88ABD4">
+    <End Role="Usluge" Type="Self.Usluge" Multiplicity="1" />
+    <End Role="Uplate" Type="Self.Uplate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usluge">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Uplate">
+        <PropertyRef Name="UslugaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Zaposleni__Uloga__164452B1">
+    <End Role="Uloge" Type="Self.Uloge" Multiplicity="1" />
+    <End Role="ZaposleniciUloge" Type="Self.ZaposleniciUloge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uloge">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ZaposleniciUloge">
+        <PropertyRef Name="UlogaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Zaposleni__Zapos__15502E78">
+    <End Role="Zaposlenici" Type="Self.Zaposlenici" Multiplicity="1" />
+    <End Role="ZaposleniciUloge" Type="Self.ZaposleniciUloge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zaposlenici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ZaposleniciUloge">
+        <PropertyRef Name="ZaposlenikId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="isp_Dobavljaci_SelectByNaziv" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="isp_InstaliranaOprema_SelectyByKlijent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Klijent" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="isp_Klijenti_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ime" Type="nvarchar" Mode="In" />
+    <Parameter Name="Prezime" Type="nvarchar" Mode="In" />
+    <Parameter Name="KorisnickoIme" Type="nvarchar" Mode="In" />
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="Adresa" Type="nvarchar" Mode="In" />
+    <Parameter Name="Telefon" Type="nvarchar" Mode="In" />
+    <Parameter Name="Aktivan" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="isp_Klijenti_SelectByImePrezime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ImePrezime" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="isp_Nabavka_SelectByDatum" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="datum1" Type="datetime" Mode="In" />
+    <Parameter Name="datum2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="isp_Nabavka_SelectById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NabavkaId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="isp_Oprema_SelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="isp_PosebniRacuni_SelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="isp_PosebniRacuni_SelectById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PosebniRacunId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="isp_Racuni_SelectById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RacunId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="isp_Racuni_SelectByKlijent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ImePrezime" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="isp_RadniNalozi_SelectByKlijent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Klijent" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="isp_Skladiste_SelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="isp_Skladiste_SelectByOprema" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OpremaId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="isp_Ugovori_SelectByBrojUgovora" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BrojUgovora" Type="int" Mode="In" />
+  </Function>
+  <Function Name="isp_Ugovori_SelectByKlijent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ImePrezime" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="isp_Zaposlenici_SelectByImePrezime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ImePrezime" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="IspKlijentiModelStoreContainer">
+    <EntitySet Name="Dobavljaci" EntityType="Self.Dobavljaci" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InstaliranaOprema" EntityType="Self.InstaliranaOprema" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Klijenti" EntityType="Self.Klijenti" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KlijentiLog" EntityType="Self.KlijentiLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MjerneJedinice" EntityType="Self.MjerneJedinice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mjeseci" EntityType="Self.Mjeseci" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Nabavka" EntityType="Self.Nabavka" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NaciniPlacanja" EntityType="Self.NaciniPlacanja" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OpremaMaterijal" EntityType="Self.OpremaMaterijal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PosebniRacuni" EntityType="Self.PosebniRacuni" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Racuni" EntityType="Self.Racuni" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RadniNalozi" EntityType="Self.RadniNalozi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Skladiste" EntityType="Self.Skladiste" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StatusiNaloga" EntityType="Self.StatusiNaloga" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ugovori" EntityType="Self.Ugovori" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Uloge" EntityType="Self.Uloge" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Uplate" EntityType="Self.Uplate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usluge" EntityType="Self.Usluge" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Zaposlenici" EntityType="Self.Zaposlenici" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ZaposleniciUloge" EntityType="Self.ZaposleniciUloge" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Instalira__Klije__48CFD27E" Association="Self.FK__Instalira__Klije__48CFD27E">
+      <End Role="Klijenti" EntitySet="Klijenti" />
+      <End Role="InstaliranaOprema" EntitySet="InstaliranaOprema" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Instalira__Oprem__49C3F6B7" Association="Self.FK__Instalira__Oprem__49C3F6B7">
+      <End Role="OpremaMaterijal" EntitySet="OpremaMaterijal" />
+      <End Role="InstaliranaOprema" EntitySet="InstaliranaOprema" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Nabavka__OpremaM__5812160E" Association="Self.FK__Nabavka__OpremaM__5812160E">
+      <End Role="OpremaMaterijal" EntitySet="OpremaMaterijal" />
+      <End Role="Nabavka" EntitySet="Nabavka" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Nabavka__Zaposle__571DF1D5" Association="Self.FK__Nabavka__Zaposle__571DF1D5">
+      <End Role="Zaposlenici" EntitySet="Zaposlenici" />
+      <End Role="Nabavka" EntitySet="Nabavka" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OpremaMat__Mjern__4222D4EF" Association="Self.FK__OpremaMat__Mjern__4222D4EF">
+      <End Role="MjerneJedinice" EntitySet="MjerneJedinice" />
+      <End Role="OpremaMaterijal" EntitySet="OpremaMaterijal" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PosebniRa__Nacin__55F4C372" Association="Self.FK__PosebniRa__Nacin__55F4C372">
+      <End Role="NaciniPlacanja" EntitySet="NaciniPlacanja" />
+      <End Role="PosebniRacuni" EntitySet="PosebniRacuni" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Racuni__KlijentI__339FAB6E" Association="Self.FK__Racuni__KlijentI__339FAB6E">
+      <End Role="Klijenti" EntitySet="Klijenti" />
+      <End Role="Racuni" EntitySet="Racuni" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Racuni__MjesecId__3587F3E0" Association="Self.FK__Racuni__MjesecId__3587F3E0">
+      <End Role="Mjeseci" EntitySet="Mjeseci" />
+      <End Role="Racuni" EntitySet="Racuni" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Racuni__NacinPla__3B40CD36" Association="Self.FK__Racuni__NacinPla__3B40CD36">
+      <End Role="NaciniPlacanja" EntitySet="NaciniPlacanja" />
+      <End Role="Racuni" EntitySet="Racuni" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Racuni__UslugaId__3493CFA7" Association="Self.FK__Racuni__UslugaId__3493CFA7">
+      <End Role="Usluge" EntitySet="Usluge" />
+      <End Role="Racuni" EntitySet="Racuni" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RadniNalo__Klije__160F4887" Association="Self.FK__RadniNalo__Klije__160F4887">
+      <End Role="Klijenti" EntitySet="Klijenti" />
+      <End Role="RadniNalozi" EntitySet="RadniNalozi" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RadniNalo__Statu__17036CC0" Association="Self.FK__RadniNalo__Statu__17036CC0">
+      <End Role="StatusiNaloga" EntitySet="StatusiNaloga" />
+      <End Role="RadniNalozi" EntitySet="RadniNalozi" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RadniNalo__Uslug__17F790F9" Association="Self.FK__RadniNalo__Uslug__17F790F9">
+      <End Role="Usluge" EntitySet="Usluge" />
+      <End Role="RadniNalozi" EntitySet="RadniNalozi" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RadniNalo__Zapos__18EBB532" Association="Self.FK__RadniNalo__Zapos__18EBB532">
+      <End Role="Zaposlenici" EntitySet="Zaposlenici" />
+      <End Role="RadniNalozi" EntitySet="RadniNalozi" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Skladiste__Oprem__44FF419A" Association="Self.FK__Skladiste__Oprem__44FF419A">
+      <End Role="OpremaMaterijal" EntitySet="OpremaMaterijal" />
+      <End Role="Skladiste" EntitySet="Skladiste" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ugovori__Klijent__21B6055D" Association="Self.FK__Ugovori__Klijent__21B6055D">
+      <End Role="Klijenti" EntitySet="Klijenti" />
+      <End Role="Ugovori" EntitySet="Ugovori" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ugovori__UslugaI__20C1E124" Association="Self.FK__Ugovori__UslugaI__20C1E124">
+      <End Role="Usluge" EntitySet="Usluge" />
+      <End Role="Ugovori" EntitySet="Ugovori" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Uplate__KlijentI__4D94879B" Association="Self.FK__Uplate__KlijentI__4D94879B">
+      <End Role="Klijenti" EntitySet="Klijenti" />
+      <End Role="Uplate" EntitySet="Uplate" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Uplate__UslugaId__4E88ABD4" Association="Self.FK__Uplate__UslugaId__4E88ABD4">
+      <End Role="Usluge" EntitySet="Usluge" />
+      <End Role="Uplate" EntitySet="Uplate" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Zaposleni__Uloga__164452B1" Association="Self.FK__Zaposleni__Uloga__164452B1">
+      <End Role="Uloge" EntitySet="Uloge" />
+      <End Role="ZaposleniciUloge" EntitySet="ZaposleniciUloge" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Zaposleni__Zapos__15502E78" Association="Self.FK__Zaposleni__Zapos__15502E78">
+      <End Role="Zaposlenici" EntitySet="Zaposlenici" />
+      <End Role="ZaposleniciUloge" EntitySet="ZaposleniciUloge" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

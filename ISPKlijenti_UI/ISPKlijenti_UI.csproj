@@ -1,0 +1,425 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{720E1EA1-1E42-42B2-9DAE-C064C4736FD8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ISPKlijenti_UI</RootNamespace>
+    <AssemblyName>ISPKlijenti_UI</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.5\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bills\CreateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bills\CreateForm.Designer.cs">
+      <DependentUpon>CreateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bills\SpecialBillAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bills\SpecialBillAddForm.Designer.cs">
+      <DependentUpon>SpecialBillAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bills\SpecialBillForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bills\SpecialBillForm.Designer.cs">
+      <DependentUpon>SpecialBillForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clients\IndexForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clients\IndexForm.Designer.cs">
+      <DependentUpon>IndexForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clients\InstaliranaOpremaAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clients\InstaliranaOpremaAddForm.Designer.cs">
+      <DependentUpon>InstaliranaOpremaAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clients\InstaliranaOpremaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clients\InstaliranaOpremaForm.Designer.cs">
+      <DependentUpon>InstaliranaOpremaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clients\UgovoriAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clients\UgovoriAddForm.Designer.cs">
+      <DependentUpon>UgovoriAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clients\UgovoriIndexForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clients\UgovoriIndexForm.Designer.cs">
+      <DependentUpon>UgovoriIndexForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Employees\AddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Employees\AddForm.Designer.cs">
+      <DependentUpon>AddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Employees\EditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Employees\EditForm.Designer.cs">
+      <DependentUpon>EditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Employees\IndexForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Employees\IndexForm.Designer.cs">
+      <DependentUpon>IndexForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clients\AddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clients\AddForm.Designer.cs">
+      <DependentUpon>AddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Global.cs" />
+    <Compile Include="Inventura\NabavkaAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inventura\NabavkaAddForm.Designer.cs">
+      <DependentUpon>NabavkaAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventura\NabavkaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inventura\NabavkaForm.Designer.cs">
+      <DependentUpon>NabavkaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventura\OpremaAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inventura\OpremaAddForm.Designer.cs">
+      <DependentUpon>OpremaAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventura\OpremaMaterijalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inventura\OpremaMaterijalForm.Designer.cs">
+      <DependentUpon>OpremaMaterijalForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventura\SkladisteIndexForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inventura\SkladisteIndexForm.Designer.cs">
+      <DependentUpon>SkladisteIndexForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventura\SkladisteKolicinaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inventura\SkladisteKolicinaForm.Designer.cs">
+      <DependentUpon>SkladisteKolicinaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IspKlijentiDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IspKlijentiDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Bills\IndexForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bills\IndexForm.Designer.cs">
+      <DependentUpon>IndexForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RadniNalog\AddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadniNalog\AddForm.Designer.cs">
+      <DependentUpon>AddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RadniNalog\IndexForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadniNalog\IndexForm.Designer.cs">
+      <DependentUpon>IndexForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RadniNalog\StatusForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadniNalog\StatusForm.Designer.cs">
+      <DependentUpon>StatusForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rptPosebniRacun_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\rptPosebniRacun_Form.Designer.cs">
+      <DependentUpon>rptPosebniRacun_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rptRadniNalog_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\rptRadniNalog_Form.Designer.cs">
+      <DependentUpon>rptRadniNalog_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rptRacun_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\rptRacun_Form.Designer.cs">
+      <DependentUpon>rptRacun_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rptUplate_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\rptUplate_Form.Designer.cs">
+      <DependentUpon>rptUplate_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\EditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings\EditForm.Designer.cs">
+      <DependentUpon>EditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\UslugaAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings\UslugaAddForm.Designer.cs">
+      <DependentUpon>UslugaAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Suppliers\AddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Suppliers\AddForm.Designer.cs">
+      <DependentUpon>AddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Suppliers\IndexForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Suppliers\IndexForm.Designer.cs">
+      <DependentUpon>IndexForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util\UIHelper.cs" />
+    <Compile Include="Util\WebAPIHelper.cs" />
+    <EmbeddedResource Include="Bills\CreateForm.resx">
+      <DependentUpon>CreateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bills\SpecialBillAddForm.resx">
+      <DependentUpon>SpecialBillAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bills\SpecialBillForm.resx">
+      <DependentUpon>SpecialBillForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clients\IndexForm.resx">
+      <DependentUpon>IndexForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clients\InstaliranaOpremaAddForm.resx">
+      <DependentUpon>InstaliranaOpremaAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clients\InstaliranaOpremaForm.resx">
+      <DependentUpon>InstaliranaOpremaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clients\UgovoriAddForm.resx">
+      <DependentUpon>UgovoriAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clients\UgovoriIndexForm.resx">
+      <DependentUpon>UgovoriIndexForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Employees\AddForm.resx">
+      <DependentUpon>AddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Employees\EditForm.resx">
+      <DependentUpon>EditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Employees\IndexForm.resx">
+      <DependentUpon>IndexForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clients\AddForm.resx">
+      <DependentUpon>AddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventura\NabavkaAddForm.resx">
+      <DependentUpon>NabavkaAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventura\NabavkaForm.resx">
+      <DependentUpon>NabavkaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventura\OpremaAddForm.resx">
+      <DependentUpon>OpremaAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventura\OpremaMaterijalForm.resx">
+      <DependentUpon>OpremaMaterijalForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventura\SkladisteIndexForm.resx">
+      <DependentUpon>SkladisteIndexForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventura\SkladisteKolicinaForm.resx">
+      <DependentUpon>SkladisteKolicinaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Bills\IndexForm.resx">
+      <DependentUpon>IndexForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadniNalog\AddForm.resx">
+      <DependentUpon>AddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadniNalog\IndexForm.resx">
+      <DependentUpon>IndexForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadniNalog\StatusForm.resx">
+      <DependentUpon>StatusForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptPosebniRacun.rdlc" />
+    <EmbeddedResource Include="Reports\rptPosebniRacun_Form.resx">
+      <DependentUpon>rptPosebniRacun_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptRacun.rdlc" />
+    <EmbeddedResource Include="Reports\rptRadniNalog.rdlc" />
+    <EmbeddedResource Include="Reports\rptRadniNalog_Form.resx">
+      <DependentUpon>rptRadniNalog_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptRacun_Form.resx">
+      <DependentUpon>rptRacun_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptUplate.rdlc" />
+    <EmbeddedResource Include="Reports\rptUplate_Form.resx">
+      <DependentUpon>rptUplate_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings\EditForm.resx">
+      <DependentUpon>EditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings\UslugaAddForm.resx">
+      <DependentUpon>UslugaAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Suppliers\AddForm.resx">
+      <DependentUpon>AddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Suppliers\IndexForm.resx">
+      <DependentUpon>IndexForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="IspKlijentiDataSet.xsc">
+      <DependentUpon>IspKlijentiDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="IspKlijentiDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>IspKlijentiDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="IspKlijentiDataSet.xss">
+      <DependentUpon>IspKlijentiDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\ISPKlijenti_API.Models.isp_PosebniRacuni_SelectById_Result.datasource" />
+    <None Include="Properties\DataSources\ISPKlijenti_API.Models.isp_Racuni_SelectById_Result.datasource" />
+    <None Include="Properties\DataSources\ISPKlijenti_API.Models.Klijenti.datasource" />
+    <None Include="Properties\DataSources\ISPKlijenti_API.Models.RadniNalozi.datasource" />
+    <None Include="Properties\DataSources\ISPKlijenti_API.Models.Usluge.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ISPKlijenti_API\ISPKlijenti_API.csproj">
+      <Project>{a4598ac6-0f7b-47b2-8a96-340f850575c7}</Project>
+      <Name>ISPKlijenti_API</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

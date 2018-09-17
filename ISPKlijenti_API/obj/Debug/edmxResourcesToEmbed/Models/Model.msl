@@ -1,0 +1,410 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="IspKlijentiModelStoreContainer" CdmEntityContainer="IspKlijentiEntities">
+    <EntitySetMapping Name="Dobavljaci">
+      <EntityTypeMapping TypeName="IspKlijentiModel.Dobavljaci">
+        <MappingFragment StoreEntitySet="Dobavljaci">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="KontaktOsoba" ColumnName="KontaktOsoba" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Web" ColumnName="Web" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ZiroRacuni" ColumnName="ZiroRacuni" />
+          <ScalarProperty Name="Napomena" ColumnName="Napomena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InstaliranaOprema">
+      <EntityTypeMapping TypeName="IspKlijentiModel.InstaliranaOprema">
+        <MappingFragment StoreEntitySet="InstaliranaOprema">
+          <ScalarProperty Name="Slika" ColumnName="Slika" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="KlijentId" ColumnName="KlijentId" />
+          <ScalarProperty Name="OpremaMaterijalId" ColumnName="OpremaMaterijalId" />
+          <ScalarProperty Name="Kolicina" ColumnName="Kolicina" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Klijenti">
+      <EntityTypeMapping TypeName="IspKlijentiModel.Klijenti">
+        <MappingFragment StoreEntitySet="Klijenti">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MjerneJedinice">
+      <EntityTypeMapping TypeName="IspKlijentiModel.MjerneJedinice">
+        <MappingFragment StoreEntitySet="MjerneJedinice">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Oznaka" ColumnName="Oznaka" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Nabavka">
+      <EntityTypeMapping TypeName="IspKlijentiModel.Nabavka">
+        <MappingFragment StoreEntitySet="Nabavka">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ZaposlenikId" ColumnName="ZaposlenikId" />
+          <ScalarProperty Name="OpremaMaterijalId" ColumnName="OpremaMaterijalId" />
+          <ScalarProperty Name="Kolicina" ColumnName="Kolicina" />
+          <ScalarProperty Name="NabavnaCijena" ColumnName="NabavnaCijena" />
+          <ScalarProperty Name="DatumPrijema" ColumnName="DatumPrijema" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OpremaMaterijal">
+      <EntityTypeMapping TypeName="IspKlijentiModel.OpremaMaterijal">
+        <MappingFragment StoreEntitySet="OpremaMaterijal">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Cijena" ColumnName="Cijena" />
+          <ScalarProperty Name="MjernaJedinicaId" ColumnName="MjernaJedinicaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RadniNalozi">
+      <EntityTypeMapping TypeName="IspKlijentiModel.RadniNalozi">
+        <MappingFragment StoreEntitySet="RadniNalozi">
+          <ScalarProperty Name="IznosZaNaplatu" ColumnName="IznosZaNaplatu" />
+          <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="KlijentId" ColumnName="KlijentId" />
+          <ScalarProperty Name="UslugaId" ColumnName="UslugaId" />
+          <ScalarProperty Name="ZaposlenikId" ColumnName="ZaposlenikId" />
+          <ScalarProperty Name="Detalji" ColumnName="Detalji" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="StatusNalogaId" ColumnName="StatusNalogaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Skladiste">
+      <EntityTypeMapping TypeName="IspKlijentiModel.Skladiste">
+        <MappingFragment StoreEntitySet="Skladiste">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OpremaMaterijalId" ColumnName="OpremaMaterijalId" />
+          <ScalarProperty Name="Kolicina" ColumnName="Kolicina" />
+          <ScalarProperty Name="Lokacija" ColumnName="Lokacija" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StatusiNaloga">
+      <EntityTypeMapping TypeName="IspKlijentiModel.StatusiNaloga">
+        <MappingFragment StoreEntitySet="StatusiNaloga">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ugovori">
+      <EntityTypeMapping TypeName="IspKlijentiModel.Ugovori">
+        <MappingFragment StoreEntitySet="Ugovori">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BrojUgovora" ColumnName="BrojUgovora" />
+          <ScalarProperty Name="DatumPotpisivanja" ColumnName="DatumPotpisivanja" />
+          <ScalarProperty Name="UslugaId" ColumnName="UslugaId" />
+          <ScalarProperty Name="KlijentId" ColumnName="KlijentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Uloge">
+      <EntityTypeMapping TypeName="IspKlijentiModel.Uloge">
+        <MappingFragment StoreEntitySet="Uloge">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Opis" ColumnName="Opis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Uplate">
+      <EntityTypeMapping TypeName="IspKlijentiModel.Uplate">
+        <MappingFragment StoreEntitySet="Uplate">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="KlijentId" ColumnName="KlijentId" />
+          <ScalarProperty Name="UslugaId" ColumnName="UslugaId" />
+          <ScalarProperty Name="Iznos" ColumnName="Iznos" />
+          <ScalarProperty Name="Napomena" ColumnName="Napomena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usluge">
+      <EntityTypeMapping TypeName="IspKlijentiModel.Usluge">
+        <MappingFragment StoreEntitySet="Usluge">
+          <ScalarProperty Name="Cijena" ColumnName="Cijena" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Opis" ColumnName="Opis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Zaposlenici">
+      <EntityTypeMapping TypeName="IspKlijentiModel.Zaposlenici">
+        <MappingFragment StoreEntitySet="Zaposlenici">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+          <ScalarProperty Name="LozinkaHash" ColumnName="LozinkaHash" />
+          <ScalarProperty Name="LozinkaSalt" ColumnName="LozinkaSalt" />
+          <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ZaposleniciUloge">
+      <EntityTypeMapping TypeName="IspKlijentiModel.ZaposleniciUloge">
+        <MappingFragment StoreEntitySet="ZaposleniciUloge">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ZaposlenikId" ColumnName="ZaposlenikId" />
+          <ScalarProperty Name="UlogaId" ColumnName="UlogaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="isp_Klijenti_Insert" FunctionName="IspKlijentiModel.Store.isp_Klijenti_Insert" />
+    <FunctionImportMapping FunctionImportName="isp_Klijenti_SelectByImePrezime" FunctionName="IspKlijentiModel.Store.isp_Klijenti_SelectByImePrezime" />
+    <FunctionImportMapping FunctionImportName="isp_Zaposlenici_SelectByImePrezime" FunctionName="IspKlijentiModel.Store.isp_Zaposlenici_SelectByImePrezime" />
+    <FunctionImportMapping FunctionImportName="isp_Ugovori_SelectByKlijent" FunctionName="IspKlijentiModel.Store.isp_Ugovori_SelectByKlijent">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IspKlijentiModel.isp_Ugovori_Index">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BrojUgovora" ColumnName="BrojUgovora" />
+          <ScalarProperty Name="DatumPotpisivanja" ColumnName="DatumPotpisivanja" />
+          <ScalarProperty Name="Usluga" ColumnName="Usluga" />
+          <ScalarProperty Name="Klijent" ColumnName="Klijent" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="isp_Ugovori_SelectByBrojUgovora" FunctionName="IspKlijentiModel.Store.isp_Ugovori_SelectByBrojUgovora">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IspKlijentiModel.isp_Ugovori_Index">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BrojUgovora" ColumnName="BrojUgovora" />
+          <ScalarProperty Name="DatumPotpisivanja" ColumnName="DatumPotpisivanja" />
+          <ScalarProperty Name="Usluga" ColumnName="Usluga" />
+          <ScalarProperty Name="Klijent" ColumnName="Klijent" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="isp_RadniNalozi_Index" FunctionName="IspKlijentiModel.Store.isp_RadniNalozi_SelectByKlijent">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IspKlijentiModel.isp_RadniNalozi_SelectByKlijent_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+          <ScalarProperty Name="Klijent" ColumnName="Klijent" />
+          <ScalarProperty Name="Usluga" ColumnName="Usluga" />
+          <ScalarProperty Name="Dodijeljeno" ColumnName="Dodijeljeno" />
+          <ScalarProperty Name="Detalji" ColumnName="Detalji" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="StatusNaloga" ColumnName="StatusNaloga" />
+          <ScalarProperty Name="IznosZaNaplatu" ColumnName="IznosZaNaplatu" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="isp_Dobavljaci_SelectByNaziv" FunctionName="IspKlijentiModel.Store.isp_Dobavljaci_SelectByNaziv">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IspKlijentiModel.isp_Dobavljaci_SelectByNaziv_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="KontaktOsoba" ColumnName="KontaktOsoba" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Web" ColumnName="Web" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ZiroRacuni" ColumnName="ZiroRacuni" />
+          <ScalarProperty Name="Napomena" ColumnName="Napomena" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="isp_Oprema_SelectAll" FunctionName="IspKlijentiModel.Store.isp_Oprema_SelectAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IspKlijentiModel.isp_Oprema_SelectAll_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="MjernaJedinica" ColumnName="MjernaJedinica" />
+          <ScalarProperty Name="Cijena" ColumnName="Cijena" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="isp_Skladiste_SelectAll" FunctionName="IspKlijentiModel.Store.isp_Skladiste_SelectAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IspKlijentiModel.isp_Skladiste_SelectAll_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Cijena" ColumnName="Cijena" />
+          <ScalarProperty Name="Kolicina" ColumnName="Kolicina" />
+          <ScalarProperty Name="MjernaJedinica" ColumnName="MjernaJedinica" />
+          <ScalarProperty Name="Lokacija" ColumnName="Lokacija" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="isp_Nabavka_SelectById" FunctionName="IspKlijentiModel.Store.isp_Nabavka_SelectById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IspKlijentiModel.isp_Nabavka_SelectById_Result">
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Kolicina" ColumnName="Kolicina" />
+          <ScalarProperty Name="NabavnaCijena" ColumnName="NabavnaCijena" />
+          <ScalarProperty Name="DatumPrijema" ColumnName="DatumPrijema" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="isp_Nabavka_SelectByDatum" FunctionName="IspKlijentiModel.Store.isp_Nabavka_SelectByDatum">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IspKlijentiModel.isp_Nabavka_SelectByDatum_Result">
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Kolicina" ColumnName="Kolicina" />
+          <ScalarProperty Name="NabavnaCijena" ColumnName="NabavnaCijena" />
+          <ScalarProperty Name="DatumPrijema" ColumnName="DatumPrijema" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="isp_Skladiste_SelectByOprema" FunctionName="IspKlijentiModel.Store.isp_Skladiste_SelectByOprema" />
+    <EntitySetMapping Name="KlijentiLog">
+      <EntityTypeMapping TypeName="IspKlijentiModel.KlijentiLog">
+        <MappingFragment StoreEntitySet="KlijentiLog">
+          <ScalarProperty Name="VrijemeIzmjene" ColumnName="VrijemeIzmjene" />
+          <ScalarProperty Name="IzvrsenaPromjena" ColumnName="IzvrsenaPromjena" />
+          <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mjeseci">
+      <EntityTypeMapping TypeName="IspKlijentiModel.Mjeseci">
+        <MappingFragment StoreEntitySet="Mjeseci">
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="RbMjeseca" ColumnName="RbMjeseca" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Racuni">
+      <EntityTypeMapping TypeName="IspKlijentiModel.Racuni">
+        <MappingFragment StoreEntitySet="Racuni">
+          <ScalarProperty Name="NacinPlacanjaId" ColumnName="NacinPlacanjaId" />
+          <ScalarProperty Name="Placeno" ColumnName="Placeno" />
+          <ScalarProperty Name="VrijemeIsporuke" ColumnName="VrijemeIsporuke" />
+          <ScalarProperty Name="MjesecId" ColumnName="MjesecId" />
+          <ScalarProperty Name="IznosSaPDV" ColumnName="IznosSaPDV" />
+          <ScalarProperty Name="IznosBezPDV" ColumnName="IznosBezPDV" />
+          <ScalarProperty Name="Kolicina" ColumnName="Kolicina" />
+          <ScalarProperty Name="UslugaId" ColumnName="UslugaId" />
+          <ScalarProperty Name="KlijentId" ColumnName="KlijentId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="isp_Racuni_SelectByKlijent" FunctionName="IspKlijentiModel.Store.isp_Racuni_SelectByKlijent">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IspKlijentiModel.isp_Racuni_SelectByKlijent_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Klijent" ColumnName="Klijent" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Kolicina" ColumnName="Kolicina" />
+          <ScalarProperty Name="Cijena" ColumnName="Cijena" />
+          <ScalarProperty Name="IznosBezPDV" ColumnName="IznosBezPDV" />
+          <ScalarProperty Name="IznosSaPDV" ColumnName="IznosSaPDV" />
+          <ScalarProperty Name="VrijemeIsporuke" ColumnName="VrijemeIsporuke" />
+          <ScalarProperty Name="Placeno" ColumnName="Placeno" />
+          <ScalarProperty Name="NacinPlacanja" ColumnName="NacinPlacanja" />
+          <ScalarProperty Name="Mjesec" ColumnName="Mjesec" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="NaciniPlacanja">
+      <EntityTypeMapping TypeName="IspKlijentiModel.NaciniPlacanja">
+        <MappingFragment StoreEntitySet="NaciniPlacanja">
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="isp_Racuni_SelectById" FunctionName="IspKlijentiModel.Store.isp_Racuni_SelectById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IspKlijentiModel.isp_Racuni_SelectById_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Klijent" ColumnName="Klijent" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Kolicina" ColumnName="Kolicina" />
+          <ScalarProperty Name="Cijena" ColumnName="Cijena" />
+          <ScalarProperty Name="IznosBezPDV" ColumnName="IznosBezPDV" />
+          <ScalarProperty Name="IznosSaPDV" ColumnName="IznosSaPDV" />
+          <ScalarProperty Name="VrijemeIsporuke" ColumnName="VrijemeIsporuke" />
+          <ScalarProperty Name="Placeno" ColumnName="Placeno" />
+          <ScalarProperty Name="NacinPlacanja" ColumnName="NacinPlacanja" />
+          <ScalarProperty Name="Mjesec" ColumnName="Mjesec" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="isp_InstaliranaOprema_SelectyByKlijent" FunctionName="IspKlijentiModel.Store.isp_InstaliranaOprema_SelectyByKlijent">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IspKlijentiModel.isp_InstaliranaOprema_SelectyByKlijent_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Klijent" ColumnName="Klijent" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Kolicina" ColumnName="Kolicina" />
+          <ScalarProperty Name="Slika" ColumnName="Slika" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="PosebniRacuni">
+      <EntityTypeMapping TypeName="IspKlijentiModel.PosebniRacuni">
+        <MappingFragment StoreEntitySet="PosebniRacuni">
+          <ScalarProperty Name="NacinPlacanjaId" ColumnName="NacinPlacanjaId" />
+          <ScalarProperty Name="Placeno" ColumnName="Placeno" />
+          <ScalarProperty Name="VrijemeIsporuke" ColumnName="VrijemeIsporuke" />
+          <ScalarProperty Name="IznosSaPDV" ColumnName="IznosSaPDV" />
+          <ScalarProperty Name="IznosBezPDV" ColumnName="IznosBezPDV" />
+          <ScalarProperty Name="Cijena" ColumnName="Cijena" />
+          <ScalarProperty Name="Kolicina" ColumnName="Kolicina" />
+          <ScalarProperty Name="Usluga" ColumnName="Usluga" />
+          <ScalarProperty Name="Klijent" ColumnName="Klijent" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="isp_PosebniRacuni_SelectAll" FunctionName="IspKlijentiModel.Store.isp_PosebniRacuni_SelectAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IspKlijentiModel.isp_PosebniRacuni_SelectAll_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Klijent" ColumnName="Klijent" />
+          <ScalarProperty Name="Usluga" ColumnName="Usluga" />
+          <ScalarProperty Name="Kolicina" ColumnName="Kolicina" />
+          <ScalarProperty Name="Cijena" ColumnName="Cijena" />
+          <ScalarProperty Name="IznosBezPDV" ColumnName="IznosBezPDV" />
+          <ScalarProperty Name="IznosSaPDV" ColumnName="IznosSaPDV" />
+          <ScalarProperty Name="VrijemeIsporuke" ColumnName="VrijemeIsporuke" />
+          <ScalarProperty Name="Placeno" ColumnName="Placeno" />
+          <ScalarProperty Name="NacinPlacanja" ColumnName="NacinPlacanja" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="isp_PosebniRacuni_SelectById" FunctionName="IspKlijentiModel.Store.isp_PosebniRacuni_SelectById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IspKlijentiModel.isp_PosebniRacuni_SelectById_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Klijent" ColumnName="Klijent" />
+          <ScalarProperty Name="Usluga" ColumnName="Usluga" />
+          <ScalarProperty Name="Kolicina" ColumnName="Kolicina" />
+          <ScalarProperty Name="Cijena" ColumnName="Cijena" />
+          <ScalarProperty Name="IznosBezPDV" ColumnName="IznosBezPDV" />
+          <ScalarProperty Name="IznosSaPDV" ColumnName="IznosSaPDV" />
+          <ScalarProperty Name="VrijemeIsporuke" ColumnName="VrijemeIsporuke" />
+          <ScalarProperty Name="Placeno" ColumnName="Placeno" />
+          <ScalarProperty Name="NacinPlacanja" ColumnName="NacinPlacanja" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

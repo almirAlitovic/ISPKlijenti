@@ -1,0 +1,788 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IspKlijentiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Dobavljaci">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="KontaktOsoba" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Adresa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Telefon" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Fax" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Web" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ZiroRacuni" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Napomena" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="InstaliranaOprema">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KlijentId" Type="Int32" Nullable="false" />
+    <Property Name="OpremaMaterijalId" Type="Int32" Nullable="false" />
+    <Property Name="Kolicina" Type="Int32" />
+    <NavigationProperty Name="Klijenti" Relationship="Self.FK__Instalira__Klije__48CFD27E" FromRole="InstaliranaOprema" ToRole="Klijenti" />
+    <NavigationProperty Name="OpremaMaterijal" Relationship="Self.FK__Instalira__Oprem__49C3F6B7" FromRole="InstaliranaOprema" ToRole="OpremaMaterijal" />
+    <Property Name="Slika" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Klijenti">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="KorisnickoIme" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Adresa" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Aktivan" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="InstaliranaOprema" Relationship="Self.FK__Instalira__Klije__48CFD27E" FromRole="Klijenti" ToRole="InstaliranaOprema" />
+    <NavigationProperty Name="RadniNalozi" Relationship="Self.FK__RadniNalo__Klije__5DCAEF64" FromRole="Klijenti" ToRole="RadniNalozi" />
+    <NavigationProperty Name="Ugovori" Relationship="Self.FK__Ugovori__Klijent__21B6055D" FromRole="Klijenti" ToRole="Ugovori" />
+    <NavigationProperty Name="Uplate" Relationship="Self.FK__Uplate__KlijentI__4D94879B" FromRole="Klijenti" ToRole="Uplate" />
+    <NavigationProperty Name="Racuni" Relationship="IspKlijentiModel.FK__Racuni__KlijentI__339FAB6E" FromRole="Klijenti" ToRole="Racuni" />
+  </EntityType>
+  <EntityType Name="MjerneJedinice">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Oznaka" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="OpremaMaterijal" Relationship="Self.FK__OpremaMat__Mjern__4222D4EF" FromRole="MjerneJedinice" ToRole="OpremaMaterijal" />
+  </EntityType>
+  <EntityType Name="Nabavka">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ZaposlenikId" Type="Int32" Nullable="false" />
+    <Property Name="OpremaMaterijalId" Type="Int32" Nullable="false" />
+    <Property Name="Kolicina" Type="Int32" Nullable="false" />
+    <Property Name="NabavnaCijena" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="DatumPrijema" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="OpremaMaterijal" Relationship="Self.FK__Nabavka__OpremaM__5812160E" FromRole="Nabavka" ToRole="OpremaMaterijal" />
+    <NavigationProperty Name="Zaposlenici" Relationship="Self.FK__Nabavka__Zaposle__571DF1D5" FromRole="Nabavka" ToRole="Zaposlenici" />
+  </EntityType>
+  <EntityType Name="OpremaMaterijal">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Cijena" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="MjernaJedinicaId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="InstaliranaOprema" Relationship="Self.FK__Instalira__Oprem__49C3F6B7" FromRole="OpremaMaterijal" ToRole="InstaliranaOprema" />
+    <NavigationProperty Name="MjerneJedinice" Relationship="Self.FK__OpremaMat__Mjern__4222D4EF" FromRole="OpremaMaterijal" ToRole="MjerneJedinice" />
+    <NavigationProperty Name="Nabavka" Relationship="Self.FK__Nabavka__OpremaM__5812160E" FromRole="OpremaMaterijal" ToRole="Nabavka" />
+    <NavigationProperty Name="Skladiste" Relationship="Self.FK__Skladiste__Oprem__44FF419A" FromRole="OpremaMaterijal" ToRole="Skladiste" />
+  </EntityType>
+  <EntityType Name="RadniNalozi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KlijentId" Type="Int32" Nullable="false" />
+    <Property Name="UslugaId" Type="Int32" Nullable="false" />
+    <Property Name="ZaposlenikId" Type="Int32" Nullable="false" />
+    <Property Name="Detalji" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Adresa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="StatusNalogaId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Klijenti" Relationship="Self.FK__RadniNalo__Klije__5DCAEF64" FromRole="RadniNalozi" ToRole="Klijenti" />
+    <NavigationProperty Name="StatusiNaloga" Relationship="Self.FK__RadniNalo__Statu__60A75C0F" FromRole="RadniNalozi" ToRole="StatusiNaloga" />
+    <NavigationProperty Name="Usluge" Relationship="Self.FK__RadniNalo__Uslug__5EBF139D" FromRole="RadniNalozi" ToRole="Usluge" />
+    <NavigationProperty Name="Zaposlenici" Relationship="Self.FK__RadniNalo__Zapos__5FB337D6" FromRole="RadniNalozi" ToRole="Zaposlenici" />
+    <Property Name="DatumKreiranja" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IznosZaNaplatu" Type="Double" />
+  </EntityType>
+  <EntityType Name="Skladiste">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OpremaMaterijalId" Type="Int32" Nullable="false" />
+    <Property Name="Kolicina" Type="Int32" />
+    <Property Name="Lokacija" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OpremaMaterijal" Relationship="Self.FK__Skladiste__Oprem__44FF419A" FromRole="Skladiste" ToRole="OpremaMaterijal" />
+  </EntityType>
+  <EntityType Name="StatusiNaloga">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="RadniNalozi" Relationship="Self.FK__RadniNalo__Statu__60A75C0F" FromRole="StatusiNaloga" ToRole="RadniNalozi" />
+  </EntityType>
+  <EntityType Name="Ugovori">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BrojUgovora" Type="Int32" Nullable="false" />
+    <Property Name="DatumPotpisivanja" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UslugaId" Type="Int32" Nullable="false" />
+    <Property Name="KlijentId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Klijenti" Relationship="Self.FK__Ugovori__Klijent__21B6055D" FromRole="Ugovori" ToRole="Klijenti" />
+    <NavigationProperty Name="Usluge" Relationship="Self.FK__Ugovori__UslugaI__20C1E124" FromRole="Ugovori" ToRole="Usluge" />
+  </EntityType>
+  <EntityType Name="Uloge">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ZaposleniciUloge" Relationship="Self.FK__Zaposleni__Uloga__164452B1" FromRole="Uloge" ToRole="ZaposleniciUloge" />
+  </EntityType>
+  <EntityType Name="Uplate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KlijentId" Type="Int32" Nullable="false" />
+    <Property Name="UslugaId" Type="Int32" Nullable="false" />
+    <Property Name="Iznos" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Napomena" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Klijenti" Relationship="Self.FK__Uplate__KlijentI__4D94879B" FromRole="Uplate" ToRole="Klijenti" />
+    <NavigationProperty Name="Usluge" Relationship="Self.FK__Uplate__UslugaId__4E88ABD4" FromRole="Uplate" ToRole="Usluge" />
+  </EntityType>
+  <EntityType Name="Usluge">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="RadniNalozi" Relationship="Self.FK__RadniNalo__Uslug__5EBF139D" FromRole="Usluge" ToRole="RadniNalozi" />
+    <NavigationProperty Name="Ugovori" Relationship="Self.FK__Ugovori__UslugaI__20C1E124" FromRole="Usluge" ToRole="Ugovori" />
+    <NavigationProperty Name="Uplate" Relationship="Self.FK__Uplate__UslugaId__4E88ABD4" FromRole="Usluge" ToRole="Uplate" />
+    <Property Name="Cijena" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <NavigationProperty Name="Racuni" Relationship="IspKlijentiModel.FK__Racuni__UslugaId__3493CFA7" FromRole="Usluge" ToRole="Racuni" />
+  </EntityType>
+  <EntityType Name="Zaposlenici">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="KorisnickoIme" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LozinkaHash" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LozinkaSalt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Aktivan" Type="Boolean" />
+    <NavigationProperty Name="Nabavka" Relationship="Self.FK__Nabavka__Zaposle__571DF1D5" FromRole="Zaposlenici" ToRole="Nabavka" />
+    <NavigationProperty Name="RadniNalozi" Relationship="Self.FK__RadniNalo__Zapos__5FB337D6" FromRole="Zaposlenici" ToRole="RadniNalozi" />
+    <NavigationProperty Name="ZaposleniciUloge" Relationship="Self.FK__Zaposleni__Zapos__15502E78" FromRole="Zaposlenici" ToRole="ZaposleniciUloge" />
+  </EntityType>
+  <EntityType Name="ZaposleniciUloge">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ZaposlenikId" Type="Int32" Nullable="false" />
+    <Property Name="UlogaId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Uloge" Relationship="Self.FK__Zaposleni__Uloga__164452B1" FromRole="ZaposleniciUloge" ToRole="Uloge" />
+    <NavigationProperty Name="Zaposlenici" Relationship="Self.FK__Zaposleni__Zapos__15502E78" FromRole="ZaposleniciUloge" ToRole="Zaposlenici" />
+  </EntityType>
+  <Association Name="FK__Instalira__Klije__48CFD27E">
+    <End Role="Klijenti" Type="Self.Klijenti" Multiplicity="1" />
+    <End Role="InstaliranaOprema" Type="Self.InstaliranaOprema" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klijenti">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InstaliranaOprema">
+        <PropertyRef Name="KlijentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Instalira__Oprem__49C3F6B7">
+    <End Role="OpremaMaterijal" Type="Self.OpremaMaterijal" Multiplicity="1" />
+    <End Role="InstaliranaOprema" Type="Self.InstaliranaOprema" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OpremaMaterijal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InstaliranaOprema">
+        <PropertyRef Name="OpremaMaterijalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RadniNalo__Klije__5DCAEF64">
+    <End Role="Klijenti" Type="Self.Klijenti" Multiplicity="1" />
+    <End Role="RadniNalozi" Type="Self.RadniNalozi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klijenti">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RadniNalozi">
+        <PropertyRef Name="KlijentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ugovori__Klijent__21B6055D">
+    <End Role="Klijenti" Type="Self.Klijenti" Multiplicity="1" />
+    <End Role="Ugovori" Type="Self.Ugovori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klijenti">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ugovori">
+        <PropertyRef Name="KlijentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Uplate__KlijentI__4D94879B">
+    <End Role="Klijenti" Type="Self.Klijenti" Multiplicity="1" />
+    <End Role="Uplate" Type="Self.Uplate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klijenti">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Uplate">
+        <PropertyRef Name="KlijentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OpremaMat__Mjern__4222D4EF">
+    <End Role="MjerneJedinice" Type="Self.MjerneJedinice" Multiplicity="1" />
+    <End Role="OpremaMaterijal" Type="Self.OpremaMaterijal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MjerneJedinice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OpremaMaterijal">
+        <PropertyRef Name="MjernaJedinicaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Nabavka__OpremaM__5812160E">
+    <End Role="OpremaMaterijal" Type="Self.OpremaMaterijal" Multiplicity="1" />
+    <End Role="Nabavka" Type="Self.Nabavka" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OpremaMaterijal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Nabavka">
+        <PropertyRef Name="OpremaMaterijalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Nabavka__Zaposle__571DF1D5">
+    <End Role="Zaposlenici" Type="Self.Zaposlenici" Multiplicity="1" />
+    <End Role="Nabavka" Type="Self.Nabavka" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zaposlenici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Nabavka">
+        <PropertyRef Name="ZaposlenikId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Skladiste__Oprem__44FF419A">
+    <End Role="OpremaMaterijal" Type="Self.OpremaMaterijal" Multiplicity="1" />
+    <End Role="Skladiste" Type="Self.Skladiste" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OpremaMaterijal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Skladiste">
+        <PropertyRef Name="OpremaMaterijalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RadniNalo__Statu__60A75C0F">
+    <End Role="StatusiNaloga" Type="Self.StatusiNaloga" Multiplicity="1" />
+    <End Role="RadniNalozi" Type="Self.RadniNalozi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusiNaloga">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RadniNalozi">
+        <PropertyRef Name="StatusNalogaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RadniNalo__Uslug__5EBF139D">
+    <End Role="Usluge" Type="Self.Usluge" Multiplicity="1" />
+    <End Role="RadniNalozi" Type="Self.RadniNalozi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usluge">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RadniNalozi">
+        <PropertyRef Name="UslugaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RadniNalo__Zapos__5FB337D6">
+    <End Role="Zaposlenici" Type="Self.Zaposlenici" Multiplicity="1" />
+    <End Role="RadniNalozi" Type="Self.RadniNalozi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zaposlenici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RadniNalozi">
+        <PropertyRef Name="ZaposlenikId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ugovori__UslugaI__20C1E124">
+    <End Role="Usluge" Type="Self.Usluge" Multiplicity="1" />
+    <End Role="Ugovori" Type="Self.Ugovori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usluge">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ugovori">
+        <PropertyRef Name="UslugaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Zaposleni__Uloga__164452B1">
+    <End Role="Uloge" Type="Self.Uloge" Multiplicity="1" />
+    <End Role="ZaposleniciUloge" Type="Self.ZaposleniciUloge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uloge">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ZaposleniciUloge">
+        <PropertyRef Name="UlogaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Uplate__UslugaId__4E88ABD4">
+    <End Role="Usluge" Type="Self.Usluge" Multiplicity="1" />
+    <End Role="Uplate" Type="Self.Uplate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usluge">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Uplate">
+        <PropertyRef Name="UslugaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Zaposleni__Zapos__15502E78">
+    <End Role="Zaposlenici" Type="Self.Zaposlenici" Multiplicity="1" />
+    <End Role="ZaposleniciUloge" Type="Self.ZaposleniciUloge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zaposlenici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ZaposleniciUloge">
+        <PropertyRef Name="ZaposlenikId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="IspKlijentiEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Dobavljaci" EntityType="Self.Dobavljaci" />
+    <EntitySet Name="InstaliranaOprema" EntityType="Self.InstaliranaOprema" />
+    <EntitySet Name="Klijenti" EntityType="Self.Klijenti" />
+    <EntitySet Name="MjerneJedinice" EntityType="Self.MjerneJedinice" />
+    <EntitySet Name="Nabavka" EntityType="Self.Nabavka" />
+    <EntitySet Name="OpremaMaterijal" EntityType="Self.OpremaMaterijal" />
+    <EntitySet Name="RadniNalozi" EntityType="Self.RadniNalozi" />
+    <EntitySet Name="Skladiste" EntityType="Self.Skladiste" />
+    <EntitySet Name="StatusiNaloga" EntityType="Self.StatusiNaloga" />
+    <EntitySet Name="Ugovori" EntityType="Self.Ugovori" />
+    <EntitySet Name="Uloge" EntityType="Self.Uloge" />
+    <EntitySet Name="Uplate" EntityType="Self.Uplate" />
+    <EntitySet Name="Usluge" EntityType="Self.Usluge" />
+    <EntitySet Name="Zaposlenici" EntityType="Self.Zaposlenici" />
+    <EntitySet Name="ZaposleniciUloge" EntityType="Self.ZaposleniciUloge" />
+    <AssociationSet Name="FK__Instalira__Klije__48CFD27E" Association="Self.FK__Instalira__Klije__48CFD27E">
+      <End Role="Klijenti" EntitySet="Klijenti" />
+      <End Role="InstaliranaOprema" EntitySet="InstaliranaOprema" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Instalira__Oprem__49C3F6B7" Association="Self.FK__Instalira__Oprem__49C3F6B7">
+      <End Role="OpremaMaterijal" EntitySet="OpremaMaterijal" />
+      <End Role="InstaliranaOprema" EntitySet="InstaliranaOprema" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RadniNalo__Klije__5DCAEF64" Association="Self.FK__RadniNalo__Klije__5DCAEF64">
+      <End Role="Klijenti" EntitySet="Klijenti" />
+      <End Role="RadniNalozi" EntitySet="RadniNalozi" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ugovori__Klijent__21B6055D" Association="Self.FK__Ugovori__Klijent__21B6055D">
+      <End Role="Klijenti" EntitySet="Klijenti" />
+      <End Role="Ugovori" EntitySet="Ugovori" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Uplate__KlijentI__4D94879B" Association="Self.FK__Uplate__KlijentI__4D94879B">
+      <End Role="Klijenti" EntitySet="Klijenti" />
+      <End Role="Uplate" EntitySet="Uplate" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OpremaMat__Mjern__4222D4EF" Association="Self.FK__OpremaMat__Mjern__4222D4EF">
+      <End Role="MjerneJedinice" EntitySet="MjerneJedinice" />
+      <End Role="OpremaMaterijal" EntitySet="OpremaMaterijal" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Nabavka__OpremaM__5812160E" Association="Self.FK__Nabavka__OpremaM__5812160E">
+      <End Role="OpremaMaterijal" EntitySet="OpremaMaterijal" />
+      <End Role="Nabavka" EntitySet="Nabavka" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Nabavka__Zaposle__571DF1D5" Association="Self.FK__Nabavka__Zaposle__571DF1D5">
+      <End Role="Zaposlenici" EntitySet="Zaposlenici" />
+      <End Role="Nabavka" EntitySet="Nabavka" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Skladiste__Oprem__44FF419A" Association="Self.FK__Skladiste__Oprem__44FF419A">
+      <End Role="OpremaMaterijal" EntitySet="OpremaMaterijal" />
+      <End Role="Skladiste" EntitySet="Skladiste" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RadniNalo__Statu__60A75C0F" Association="Self.FK__RadniNalo__Statu__60A75C0F">
+      <End Role="StatusiNaloga" EntitySet="StatusiNaloga" />
+      <End Role="RadniNalozi" EntitySet="RadniNalozi" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RadniNalo__Uslug__5EBF139D" Association="Self.FK__RadniNalo__Uslug__5EBF139D">
+      <End Role="Usluge" EntitySet="Usluge" />
+      <End Role="RadniNalozi" EntitySet="RadniNalozi" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RadniNalo__Zapos__5FB337D6" Association="Self.FK__RadniNalo__Zapos__5FB337D6">
+      <End Role="Zaposlenici" EntitySet="Zaposlenici" />
+      <End Role="RadniNalozi" EntitySet="RadniNalozi" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ugovori__UslugaI__20C1E124" Association="Self.FK__Ugovori__UslugaI__20C1E124">
+      <End Role="Usluge" EntitySet="Usluge" />
+      <End Role="Ugovori" EntitySet="Ugovori" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Zaposleni__Uloga__164452B1" Association="Self.FK__Zaposleni__Uloga__164452B1">
+      <End Role="Uloge" EntitySet="Uloge" />
+      <End Role="ZaposleniciUloge" EntitySet="ZaposleniciUloge" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Uplate__UslugaId__4E88ABD4" Association="Self.FK__Uplate__UslugaId__4E88ABD4">
+      <End Role="Usluge" EntitySet="Usluge" />
+      <End Role="Uplate" EntitySet="Uplate" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Zaposleni__Zapos__15502E78" Association="Self.FK__Zaposleni__Zapos__15502E78">
+      <End Role="Zaposlenici" EntitySet="Zaposlenici" />
+      <End Role="ZaposleniciUloge" EntitySet="ZaposleniciUloge" />
+    </AssociationSet>
+    <FunctionImport Name="isp_Klijenti_Insert" ReturnType="Collection(Decimal)">
+      <Parameter Name="Ime" Mode="In" Type="String" />
+      <Parameter Name="Prezime" Mode="In" Type="String" />
+      <Parameter Name="KorisnickoIme" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Adresa" Mode="In" Type="String" />
+      <Parameter Name="Telefon" Mode="In" Type="String" />
+      <Parameter Name="Aktivan" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="isp_Klijenti_SelectByImePrezime" EntitySet="Klijenti" ReturnType="Collection(IspKlijentiModel.Klijenti)">
+      <Parameter Name="ImePrezime" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="isp_Zaposlenici_SelectByImePrezime" EntitySet="Zaposlenici" ReturnType="Collection(IspKlijentiModel.Zaposlenici)">
+      <Parameter Name="ImePrezime" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="isp_Ugovori_SelectByKlijent" ReturnType="Collection(IspKlijentiModel.isp_Ugovori_Index)">
+      <Parameter Name="ImePrezime" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="isp_Ugovori_SelectByBrojUgovora" ReturnType="Collection(IspKlijentiModel.isp_Ugovori_Index)">
+      <Parameter Name="BrojUgovora" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="isp_RadniNalozi_Index" ReturnType="Collection(IspKlijentiModel.isp_RadniNalozi_SelectByKlijent_Result)">
+      <Parameter Name="Klijent" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="isp_Dobavljaci_SelectByNaziv" ReturnType="Collection(IspKlijentiModel.isp_Dobavljaci_SelectByNaziv_Result)">
+      <Parameter Name="Naziv" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="isp_Oprema_SelectAll" ReturnType="Collection(IspKlijentiModel.isp_Oprema_SelectAll_Result)" />
+    <FunctionImport Name="isp_Skladiste_SelectAll" ReturnType="Collection(IspKlijentiModel.isp_Skladiste_SelectAll_Result)" />
+    <FunctionImport Name="isp_Nabavka_SelectById" ReturnType="Collection(IspKlijentiModel.isp_Nabavka_SelectById_Result)">
+      <Parameter Name="NabavkaId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="isp_Nabavka_SelectByDatum" ReturnType="Collection(IspKlijentiModel.isp_Nabavka_SelectByDatum_Result)">
+      <Parameter Name="datum1" Mode="In" Type="DateTime" />
+      <Parameter Name="datum2" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="isp_Skladiste_SelectByOprema" EntitySet="Skladiste" ReturnType="Collection(IspKlijentiModel.Skladiste)">
+      <Parameter Name="OpremaId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="KlijentiLog" EntityType="IspKlijentiModel.KlijentiLog" />
+    <EntitySet Name="Mjeseci" EntityType="IspKlijentiModel.Mjeseci" />
+    <EntitySet Name="Racuni" EntityType="IspKlijentiModel.Racuni" />
+    <AssociationSet Name="FK__Racuni__KlijentI__339FAB6E" Association="IspKlijentiModel.FK__Racuni__KlijentI__339FAB6E">
+      <End Role="Klijenti" EntitySet="Klijenti" />
+      <End Role="Racuni" EntitySet="Racuni" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Racuni__MjesecId__3587F3E0" Association="IspKlijentiModel.FK__Racuni__MjesecId__3587F3E0">
+      <End Role="Mjeseci" EntitySet="Mjeseci" />
+      <End Role="Racuni" EntitySet="Racuni" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Racuni__UslugaId__3493CFA7" Association="IspKlijentiModel.FK__Racuni__UslugaId__3493CFA7">
+      <End Role="Usluge" EntitySet="Usluge" />
+      <End Role="Racuni" EntitySet="Racuni" />
+    </AssociationSet>
+    <FunctionImport Name="isp_Racuni_SelectByKlijent" ReturnType="Collection(IspKlijentiModel.isp_Racuni_SelectByKlijent_Result)">
+      <Parameter Name="ImePrezime" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="NaciniPlacanja" EntityType="IspKlijentiModel.NaciniPlacanja" />
+    <AssociationSet Name="FK__Racuni__NacinPla__3B40CD36" Association="IspKlijentiModel.FK__Racuni__NacinPla__3B40CD36">
+      <End Role="NaciniPlacanja" EntitySet="NaciniPlacanja" />
+      <End Role="Racuni" EntitySet="Racuni" />
+    </AssociationSet>
+    <FunctionImport Name="isp_Racuni_SelectById" ReturnType="Collection(IspKlijentiModel.isp_Racuni_SelectById_Result)">
+      <Parameter Name="RacunId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="isp_InstaliranaOprema_SelectyByKlijent" ReturnType="Collection(IspKlijentiModel.isp_InstaliranaOprema_SelectyByKlijent_Result)">
+      <Parameter Name="Klijent" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="PosebniRacuni" EntityType="IspKlijentiModel.PosebniRacuni" />
+    <AssociationSet Name="FK__PosebniRa__Nacin__55F4C372" Association="IspKlijentiModel.FK__PosebniRa__Nacin__55F4C372">
+      <End Role="NaciniPlacanja" EntitySet="NaciniPlacanja" />
+      <End Role="PosebniRacuni" EntitySet="PosebniRacuni" />
+    </AssociationSet>
+    <FunctionImport Name="isp_PosebniRacuni_SelectAll" ReturnType="Collection(IspKlijentiModel.isp_PosebniRacuni_SelectAll_Result)" />
+    <FunctionImport Name="isp_PosebniRacuni_SelectById" ReturnType="Collection(IspKlijentiModel.isp_PosebniRacuni_SelectById_Result)">
+      <Parameter Name="PosebniRacunId" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="isp_Ugovori_Index">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="Int32" Name="BrojUgovora" Nullable="false" />
+    <Property Type="DateTime" Name="DatumPotpisivanja" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Usluga" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Klijent" Nullable="false" MaxLength="101" />
+  </ComplexType>
+  <ComplexType Name="isp_RadniNalozi_SelectByKlijent_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="DateTime" Name="DatumKreiranja" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Klijent" Nullable="false" MaxLength="101" />
+    <Property Type="String" Name="Usluga" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Dodijeljeno" Nullable="false" MaxLength="101" />
+    <Property Type="String" Name="Detalji" Nullable="true" />
+    <Property Type="String" Name="Adresa" Nullable="true" />
+    <Property Type="String" Name="StatusNaloga" Nullable="false" MaxLength="50" />
+    <Property Type="Double" Name="IznosZaNaplatu" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="isp_RadniNalozi_Index">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="DateTime" Name="DatumKreiranja" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Klijent" Nullable="false" MaxLength="101" />
+    <Property Type="String" Name="Usluga" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Dodijeljeno" Nullable="false" MaxLength="101" />
+    <Property Type="String" Name="Detalji" Nullable="true" />
+    <Property Type="String" Name="Adresa" Nullable="true" />
+    <Property Type="String" Name="StatusNaloga" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="IznosZaNaplatu" Nullable="true" MaxLength="32" />
+  </ComplexType>
+  <ComplexType Name="isp_Dobavljaci_SelectByNaziv_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Naziv" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="KontaktOsoba" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Adresa" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Telefon" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="Fax" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="Web" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ZiroRacuni" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Napomena" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="isp_Oprema_SelectAll_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Naziv" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="MjernaJedinica" Nullable="false" MaxLength="5" />
+    <Property Type="Decimal" Name="Cijena" Nullable="false" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="isp_Skladiste_SelectAll_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Naziv" Nullable="false" MaxLength="150" />
+    <Property Type="Decimal" Name="Cijena" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Int32" Name="Kolicina" Nullable="true" />
+    <Property Type="String" Name="MjernaJedinica" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="Lokacija" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="isp_Nabavka_SelectById_Result">
+    <Property Type="String" Name="Naziv" Nullable="false" MaxLength="150" />
+    <Property Type="Int32" Name="Kolicina" Nullable="false" />
+    <Property Type="Decimal" Name="NabavnaCijena" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="DateTime" Name="DatumPrijema" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="isp_Nabavka_SelectByDatum_Result">
+    <Property Type="String" Name="Naziv" Nullable="false" MaxLength="150" />
+    <Property Type="Int32" Name="Kolicina" Nullable="false" />
+    <Property Type="Decimal" Name="NabavnaCijena" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="DateTime" Name="DatumPrijema" Nullable="false" Precision="23" />
+  </ComplexType>
+  <EntityType Name="KlijentiLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Prezime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="KorisnickoIme" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IzvrsenaPromjena" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="VrijemeIzmjene" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Mjeseci">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RbMjeseca" Type="Int32" Nullable="false" />
+    <Property Name="Naziv" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Racuni" Relationship="IspKlijentiModel.FK__Racuni__MjesecId__3587F3E0" FromRole="Mjeseci" ToRole="Racuni" />
+  </EntityType>
+  <EntityType Name="Racuni">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KlijentId" Type="Int32" Nullable="false" />
+    <Property Name="UslugaId" Type="Int32" Nullable="false" />
+    <Property Name="Kolicina" Type="Int32" Nullable="false" />
+    <Property Name="IznosBezPDV" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="IznosSaPDV" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="MjesecId" Type="Int32" Nullable="false" />
+    <Property Name="VrijemeIsporuke" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Placeno" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Klijenti" Relationship="IspKlijentiModel.FK__Racuni__KlijentI__339FAB6E" FromRole="Racuni" ToRole="Klijenti" />
+    <NavigationProperty Name="Mjeseci" Relationship="IspKlijentiModel.FK__Racuni__MjesecId__3587F3E0" FromRole="Racuni" ToRole="Mjeseci" />
+    <NavigationProperty Name="Usluge" Relationship="IspKlijentiModel.FK__Racuni__UslugaId__3493CFA7" FromRole="Racuni" ToRole="Usluge" />
+    <Property Name="NacinPlacanjaId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="NaciniPlacanja" Relationship="IspKlijentiModel.FK__Racuni__NacinPla__3B40CD36" FromRole="Racuni" ToRole="NaciniPlacanja" />
+  </EntityType>
+  <Association Name="FK__Racuni__KlijentI__339FAB6E">
+    <End Type="IspKlijentiModel.Klijenti" Role="Klijenti" Multiplicity="1" />
+    <End Type="IspKlijentiModel.Racuni" Role="Racuni" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klijenti">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Racuni">
+        <PropertyRef Name="KlijentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Racuni__MjesecId__3587F3E0">
+    <End Type="IspKlijentiModel.Mjeseci" Role="Mjeseci" Multiplicity="1" />
+    <End Type="IspKlijentiModel.Racuni" Role="Racuni" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mjeseci">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Racuni">
+        <PropertyRef Name="MjesecId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Racuni__UslugaId__3493CFA7">
+    <End Type="IspKlijentiModel.Usluge" Role="Usluge" Multiplicity="1" />
+    <End Type="IspKlijentiModel.Racuni" Role="Racuni" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usluge">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Racuni">
+        <PropertyRef Name="UslugaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="isp_Racuni_SelectByKlijent_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Klijent" Nullable="false" MaxLength="101" />
+    <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Kolicina" Nullable="false" />
+    <Property Type="Decimal" Name="Cijena" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="IznosBezPDV" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="IznosSaPDV" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="DateTime" Name="VrijemeIsporuke" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Placeno" Nullable="false" />
+    <Property Type="String" Name="NacinPlacanja" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Mjesec" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="NaciniPlacanja">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Racuni" Relationship="IspKlijentiModel.FK__Racuni__NacinPla__3B40CD36" FromRole="NaciniPlacanja" ToRole="Racuni" />
+    <NavigationProperty Name="PosebniRacuni" Relationship="IspKlijentiModel.FK__PosebniRa__Nacin__55F4C372" FromRole="NaciniPlacanja" ToRole="PosebniRacuni" />
+  </EntityType>
+  <Association Name="FK__Racuni__NacinPla__3B40CD36">
+    <End Type="IspKlijentiModel.NaciniPlacanja" Role="NaciniPlacanja" Multiplicity="1" />
+    <End Type="IspKlijentiModel.Racuni" Role="Racuni" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NaciniPlacanja">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Racuni">
+        <PropertyRef Name="NacinPlacanjaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="isp_Racuni_SelectById_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Klijent" Nullable="false" MaxLength="101" />
+    <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Kolicina" Nullable="false" />
+    <Property Type="Decimal" Name="Cijena" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="IznosBezPDV" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="IznosSaPDV" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="DateTime" Name="VrijemeIsporuke" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Placeno" Nullable="false" />
+    <Property Type="String" Name="NacinPlacanja" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Mjesec" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="isp_InstaliranaOprema_SelectyByKlijent_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Klijent" Nullable="false" MaxLength="101" />
+    <Property Type="String" Name="Naziv" Nullable="false" MaxLength="150" />
+    <Property Type="Int32" Name="Kolicina" Nullable="true" />
+    <Property Type="Binary" Name="Slika" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="PosebniRacuni">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Klijent" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Usluga" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Kolicina" Type="Int32" Nullable="false" />
+    <Property Name="Cijena" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="IznosBezPDV" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="IznosSaPDV" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="VrijemeIsporuke" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Placeno" Type="Boolean" Nullable="false" />
+    <Property Name="NacinPlacanjaId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="NaciniPlacanja" Relationship="IspKlijentiModel.FK__PosebniRa__Nacin__55F4C372" FromRole="PosebniRacuni" ToRole="NaciniPlacanja" />
+  </EntityType>
+  <Association Name="FK__PosebniRa__Nacin__55F4C372">
+    <End Type="IspKlijentiModel.NaciniPlacanja" Role="NaciniPlacanja" Multiplicity="1" />
+    <End Type="IspKlijentiModel.PosebniRacuni" Role="PosebniRacuni" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NaciniPlacanja">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PosebniRacuni">
+        <PropertyRef Name="NacinPlacanjaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="isp_PosebniRacuni_SelectAll_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Klijent" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Usluga" Nullable="false" />
+    <Property Type="Int32" Name="Kolicina" Nullable="false" />
+    <Property Type="Decimal" Name="Cijena" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="IznosBezPDV" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="IznosSaPDV" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="DateTime" Name="VrijemeIsporuke" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Placeno" Nullable="false" />
+    <Property Type="String" Name="NacinPlacanja" Nullable="false" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="isp_PosebniRacuni_SelectById_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Klijent" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Usluga" Nullable="false" />
+    <Property Type="Int32" Name="Kolicina" Nullable="false" />
+    <Property Type="Decimal" Name="Cijena" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="IznosBezPDV" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="IznosSaPDV" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="DateTime" Name="VrijemeIsporuke" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Placeno" Nullable="false" />
+    <Property Type="String" Name="NacinPlacanja" Nullable="false" MaxLength="30" />
+  </ComplexType>
+</Schema>
