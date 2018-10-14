@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddForm));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,7 +42,6 @@
             this.txtNaziv = new System.Windows.Forms.TextBox();
             this.txtKontaktOsoba = new System.Windows.Forms.TextBox();
             this.txtAdresa = new System.Windows.Forms.TextBox();
-            this.txtTelefon = new System.Windows.Forms.TextBox();
             this.txtFax = new System.Windows.Forms.TextBox();
             this.txtWeb = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -49,6 +49,9 @@
             this.txtNapomena = new System.Windows.Forms.TextBox();
             this.btnSnimi = new System.Windows.Forms.Button();
             this.btnOtkazi = new System.Windows.Forms.Button();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtTelefon = new System.Windows.Forms.MaskedTextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -147,6 +150,7 @@
             this.txtNaziv.Name = "txtNaziv";
             this.txtNaziv.Size = new System.Drawing.Size(216, 20);
             this.txtNaziv.TabIndex = 9;
+            this.txtNaziv.Validating += new System.ComponentModel.CancelEventHandler(this.txtNaziv_Validating);
             // 
             // txtKontaktOsoba
             // 
@@ -161,13 +165,7 @@
             this.txtAdresa.Name = "txtAdresa";
             this.txtAdresa.Size = new System.Drawing.Size(216, 20);
             this.txtAdresa.TabIndex = 11;
-            // 
-            // txtTelefon
-            // 
-            this.txtTelefon.Location = new System.Drawing.Point(162, 115);
-            this.txtTelefon.Name = "txtTelefon";
-            this.txtTelefon.Size = new System.Drawing.Size(216, 20);
-            this.txtTelefon.TabIndex = 12;
+            this.txtAdresa.Validating += new System.ComponentModel.CancelEventHandler(this.txtAdresa_Validating);
             // 
             // txtFax
             // 
@@ -225,12 +223,28 @@
             this.btnOtkazi.UseVisualStyleBackColor = true;
             this.btnOtkazi.Click += new System.EventHandler(this.btnOtkazi_Click);
             // 
+            // errorProvider
+            // 
+            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider.ContainerControl = this;
+            // 
+            // txtTelefon
+            // 
+            this.txtTelefon.Location = new System.Drawing.Point(162, 115);
+            this.txtTelefon.Mask = "(+999) 00 000-000";
+            this.txtTelefon.Name = "txtTelefon";
+            this.txtTelefon.Size = new System.Drawing.Size(216, 20);
+            this.txtTelefon.TabIndex = 21;
+            this.txtTelefon.Validating += new System.ComponentModel.CancelEventHandler(this.txtTelefon_Validating);
+            // 
             // AddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(483, 378);
+            this.Controls.Add(this.txtTelefon);
             this.Controls.Add(this.btnOtkazi);
             this.Controls.Add(this.btnSnimi);
             this.Controls.Add(this.txtNapomena);
@@ -238,7 +252,6 @@
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtWeb);
             this.Controls.Add(this.txtFax);
-            this.Controls.Add(this.txtTelefon);
             this.Controls.Add(this.txtAdresa);
             this.Controls.Add(this.txtKontaktOsoba);
             this.Controls.Add(this.txtNaziv);
@@ -255,6 +268,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Novi dobavljač";
             this.Load += new System.EventHandler(this.AddForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -274,7 +288,6 @@
         private System.Windows.Forms.TextBox txtNaziv;
         private System.Windows.Forms.TextBox txtKontaktOsoba;
         private System.Windows.Forms.TextBox txtAdresa;
-        private System.Windows.Forms.TextBox txtTelefon;
         private System.Windows.Forms.TextBox txtFax;
         private System.Windows.Forms.TextBox txtWeb;
         private System.Windows.Forms.TextBox txtEmail;
@@ -282,5 +295,7 @@
         private System.Windows.Forms.TextBox txtNapomena;
         private System.Windows.Forms.Button btnSnimi;
         private System.Windows.Forms.Button btnOtkazi;
+        private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.MaskedTextBox txtTelefon;
     }
 }

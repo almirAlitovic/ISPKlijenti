@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -106,6 +107,62 @@ namespace ISPKlijenti_UI.Suppliers
                 txtZiroRacuni.Text = dobavljac.ZiroRacuni;
                 txtNapomena.Text = dobavljac.Napomena;
             }       
+        }
+
+        private void txtNaziv_Validating(object sender, CancelEventArgs e)
+        {
+            Regex rgx = new Regex(@"^[a-zA-Z0-9\s\.]+$");
+
+            if (String.IsNullOrEmpty(txtNaziv.Text))
+            {
+                e.Cancel = true;
+                errorProvider.SetError(txtNaziv, Global.GetMessage("obavezno_polje"));
+            }
+            else if (!(rgx.IsMatch(txtNaziv.Text)))
+            {
+                e.Cancel = true;
+                errorProvider.SetError(txtNaziv, Global.GetMessage("wrong_rgx"));
+            }
+            else if (txtNaziv.Text.Length < 2)
+            {
+                e.Cancel = true;
+                errorProvider.SetError(txtNaziv, Global.GetMessage("naziv_len"));
+            }
+            else
+                errorProvider.SetError(txtNaziv, "");
+        }
+
+        private void txtAdresa_Validating(object sender, CancelEventArgs e)
+        {
+            Regex rgx = new Regex(@"^[a-zA-Z0-9\s\.]+$");
+            if (String.IsNullOrEmpty(txtAdresa.Text))
+            {
+                e.Cancel = true;
+                errorProvider.SetError(txtNaziv, Global.GetMessage("obavezno_polje"));
+            }
+            if (rgx.IsMatch(txtAdresa.Text))
+            {
+                errorProvider.SetError(txtAdresa, "");
+            }
+            else if (String.IsNullOrEmpty(txtAdresa.Text.Trim()))
+            {
+                errorProvider.SetError(txtAdresa, "");
+            }
+            else
+            {
+                e.Cancel = true;
+                errorProvider.SetError(txtAdresa, Global.GetMessage("adresa_rgx"));
+            }
+        }
+
+        private void txtTelefon_Validating(object sender, CancelEventArgs e)
+        {
+            if (txtTelefon.Text == "(+   )       -")
+            {
+                e.Cancel = true;
+                errorProvider.SetError(txtTelefon, Global.GetMessage("telefon_req"));
+            }
+            else errorProvider.SetError(txtTelefon, "");
         }
     }
 }

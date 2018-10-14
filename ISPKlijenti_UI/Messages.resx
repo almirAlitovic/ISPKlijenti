@@ -150,6 +150,15 @@
   <data name="lozinka_rgx" xml:space="preserve">
     <value>Dozvoljen unos samo slova, brojeva i #$ znakova.</value>
   </data>
+  <data name="naziv_len" xml:space="preserve">
+    <value>Prekratak naziv.</value>
+  </data>
+  <data name="obavezno_polje" xml:space="preserve">
+    <value>Obavezno polje.</value>
+  </data>
+  <data name="odaberi" xml:space="preserve">
+    <value>Obavezno odabrati</value>
+  </data>
   <data name="prezime_len" xml:space="preserve">
     <value>Prezime mora biti duže od jednog karaktera!</value>
   </data>

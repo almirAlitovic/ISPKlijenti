@@ -43,6 +43,14 @@ namespace ISPKlijenti_API.Controllers
             return db.isp_Klijenti_SelectByImePrezime(imePrezime).ToList();
         }
 
+        [HttpGet]
+        [ResponseType(typeof(Klijenti))]
+        [Route("api/Klijenti/GetLastKlijent")]
+        public IHttpActionResult GetLastKlijent()
+        {
+            return Ok(db.Klijenti.OrderByDescending(x=>x.Id).FirstOrDefault());
+        }
+
         // PUT: api/Klijenti/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutKlijenti(int id, Klijenti klijenti)

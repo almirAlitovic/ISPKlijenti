@@ -160,6 +160,33 @@ namespace ISPKlijenti_UI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Prekratak naziv..
+        /// </summary>
+        internal static string naziv_len {
+            get {
+                return ResourceManager.GetString("naziv_len", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obavezno polje..
+        /// </summary>
+        internal static string obavezno_polje {
+            get {
+                return ResourceManager.GetString("obavezno_polje", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obavezno odabrati.
+        /// </summary>
+        internal static string odaberi {
+            get {
+                return ResourceManager.GetString("odaberi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Prezime mora biti duže od jednog karaktera!.
         /// </summary>
         internal static string prezime_len {

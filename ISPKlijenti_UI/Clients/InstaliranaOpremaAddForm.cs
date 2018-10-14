@@ -107,6 +107,10 @@ namespace ISPKlijenti_UI.Clients
             instalirano.Kolicina = (int)numKolicina.Value;
 
             HttpResponseMessage response = instaliranaOpremaService.PostResponse(instalirano);
+            if (response.IsSuccessStatusCode)
+            {
+                this.Close();
+            }
         }
     }
 }

@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddForm));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtTelefon = new System.Windows.Forms.MaskedTextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.cbxPostojeciKlijenti = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtTelefon = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtKorisnickoIme = new System.Windows.Forms.TextBox();
@@ -55,33 +55,20 @@
             this.btnPonisti = new System.Windows.Forms.Button();
             this.cbxUsluga = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // txtTelefon
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.cbxPostojeciKlijenti);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.txtTelefon);
-            this.groupBox1.Controls.Add(this.txtEmail);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.txtKorisnickoIme);
-            this.groupBox1.Controls.Add(this.txtPrezime);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtOpisPosla);
-            this.groupBox1.Controls.Add(this.lblAdresa);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.txtAdresa);
-            this.groupBox1.Controls.Add(this.txtIme);
-            this.groupBox1.Location = new System.Drawing.Point(36, 73);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(393, 277);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Podaci o klijentu";
+            this.txtTelefon.Location = new System.Drawing.Point(105, 159);
+            this.txtTelefon.Mask = "(+999) 00 000-000";
+            this.txtTelefon.Name = "txtTelefon";
+            this.txtTelefon.Size = new System.Drawing.Size(135, 20);
+            this.txtTelefon.TabIndex = 16;
+            this.txtTelefon.Validating += new System.ComponentModel.CancelEventHandler(this.txtTelefon_Validating_1);
             // 
             // label11
             // 
@@ -120,14 +107,6 @@
             this.label9.TabIndex = 12;
             this.label9.Text = "Email:";
             // 
-            // txtTelefon
-            // 
-            this.txtTelefon.Location = new System.Drawing.Point(105, 160);
-            this.txtTelefon.Name = "txtTelefon";
-            this.txtTelefon.ReadOnly = true;
-            this.txtTelefon.Size = new System.Drawing.Size(142, 20);
-            this.txtTelefon.TabIndex = 11;
-            // 
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(105, 107);
@@ -135,6 +114,7 @@
             this.txtEmail.ReadOnly = true;
             this.txtEmail.Size = new System.Drawing.Size(272, 20);
             this.txtEmail.TabIndex = 10;
+            this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
             // 
             // label8
             // 
@@ -152,6 +132,7 @@
             this.txtKorisnickoIme.ReadOnly = true;
             this.txtKorisnickoIme.Size = new System.Drawing.Size(272, 20);
             this.txtKorisnickoIme.TabIndex = 8;
+            this.txtKorisnickoIme.Validating += new System.ComponentModel.CancelEventHandler(this.txtKorisnickoIme_Validating);
             // 
             // txtPrezime
             // 
@@ -160,6 +141,7 @@
             this.txtPrezime.ReadOnly = true;
             this.txtPrezime.Size = new System.Drawing.Size(135, 20);
             this.txtPrezime.TabIndex = 7;
+            this.txtPrezime.Validating += new System.ComponentModel.CancelEventHandler(this.txtPrezime_Validating);
             // 
             // label2
             // 
@@ -203,6 +185,7 @@
             this.txtAdresa.ReadOnly = true;
             this.txtAdresa.Size = new System.Drawing.Size(272, 20);
             this.txtAdresa.TabIndex = 1;
+            this.txtAdresa.Validating += new System.ComponentModel.CancelEventHandler(this.txtAdresa_Validating);
             // 
             // txtIme
             // 
@@ -211,6 +194,7 @@
             this.txtIme.ReadOnly = true;
             this.txtIme.Size = new System.Drawing.Size(135, 20);
             this.txtIme.TabIndex = 0;
+            this.txtIme.Validating += new System.ComponentModel.CancelEventHandler(this.txtIme_Validating_1);
             // 
             // cbxTehnicar
             // 
@@ -220,6 +204,7 @@
             this.cbxTehnicar.Size = new System.Drawing.Size(219, 21);
             this.cbxTehnicar.TabIndex = 8;
             this.cbxTehnicar.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.cbxFormat);
+            this.cbxTehnicar.Validating += new System.ComponentModel.CancelEventHandler(this.cbxTehnicar_Validating);
             // 
             // label5
             // 
@@ -247,6 +232,8 @@
             this.txtIznos.Name = "txtIznos";
             this.txtIznos.Size = new System.Drawing.Size(142, 20);
             this.txtIznos.TabIndex = 11;
+            this.txtIznos.Text = "0";
+            this.txtIznos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIznos_KeyPress);
             // 
             // label7
             // 
@@ -295,6 +282,7 @@
             this.cbxUsluga.Name = "cbxUsluga";
             this.cbxUsluga.Size = new System.Drawing.Size(272, 21);
             this.cbxUsluga.TabIndex = 16;
+            this.cbxUsluga.Validating += new System.ComponentModel.CancelEventHandler(this.cbxUsluga_Validating);
             // 
             // label4
             // 
@@ -306,10 +294,41 @@
             this.label4.TabIndex = 17;
             this.label4.Text = "Vrsta usluge:";
             // 
+            // errorProvider
+            // 
+            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider.ContainerControl = this;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.txtTelefon);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.cbxPostojeciKlijenti);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.txtEmail);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.txtKorisnickoIme);
+            this.groupBox1.Controls.Add(this.txtPrezime);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.txtOpisPosla);
+            this.groupBox1.Controls.Add(this.lblAdresa);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.txtAdresa);
+            this.groupBox1.Controls.Add(this.txtIme);
+            this.groupBox1.Location = new System.Drawing.Point(33, 73);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(393, 277);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Podaci o klijentu";
+            // 
             // AddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(729, 480);
             this.Controls.Add(this.label4);
@@ -326,6 +345,7 @@
             this.Name = "AddForm";
             this.Text = "Kreiranje radnog naloga";
             this.Load += new System.EventHandler(this.AddForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -334,8 +354,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox txtOpisPosla;
         private System.Windows.Forms.Label lblAdresa;
@@ -354,12 +372,14 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtTelefon;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtKorisnickoIme;
         private System.Windows.Forms.TextBox txtPrezime;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cbxPostojeciKlijenti;
+        private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.MaskedTextBox txtTelefon;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
